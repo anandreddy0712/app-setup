@@ -1,49 +1,49 @@
-"use client"
+"use client";
 
 import { useState, useEffect } from "react";
 
 import VehicleDashboard from "@/components/views/VehicleDashboard";
 import Image from "next/image";
 import Sidebar from "@/components/shared/Sidebar";
+import FilterPage from "./FilterPage";
 
-export default function Home()
-{
-  const [showSideBar, setShowSideBar] = useState(false)
-  const [theme, setTheme] = useState('light');
+export default function Home() {
+  const [showSideBar, setShowSideBar] = useState(false);
+  const [theme, setTheme] = useState("light");
 
-  useEffect(() =>
-  {
+  useEffect(() => {
     // Check localStorage for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
       setTheme(savedTheme);
     }
   }, []);
 
-  useEffect(() =>
-  {
+  useEffect(() => {
     // Apply theme class to the body
-    if (theme === 'dark') {
-      document.body.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+    if (theme === "dark") {
+      document.body.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     } else {
-      document.body.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+      document.body.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
   }, [theme]);
-
 
   return (
     <div>
       <button
-        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         className="p-2 bg-gray-300 rounded"
       >
         Toggle Theme
       </button>
-      <VehicleDashboard setShowSideBar={setShowSideBar} showSideBar={showSideBar} />
+      {/* <FilterPage /> */}
+      <VehicleDashboard
+        setShowSideBar={setShowSideBar}
+        showSideBar={showSideBar}
+      />
       <Sidebar isOpen={showSideBar} setShowSideBar={setShowSideBar} />
-
     </div>
   );
 }
