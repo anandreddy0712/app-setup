@@ -38,7 +38,7 @@ export default function Home() {
       >
         Toggle Theme
       </button>
-      <FilterPage />
+      {/* <FilterPage /> */}
       <VehicleDashboard
         setShowSideBar={setShowSideBar}
         showSideBar={showSideBar}
